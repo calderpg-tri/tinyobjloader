@@ -62,6 +62,7 @@ THE SOFTWARE.
 #include <map>
 #include <string>
 #include <vector>
+#include <math.h>
 #include <stdlib.h>
 
 namespace tinyobj {
