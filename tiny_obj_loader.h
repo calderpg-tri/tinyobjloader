@@ -846,18 +846,16 @@ static bool tryParseDouble(const char *s, const char *s_end, double *result) {
   if (s >= s_end) {
     return false;
   }
-  
+
 #if defined(__APPLE__)
   static locale_t c_locale = newlocale(LC_ALL_MASK, NULL, NULL);
 #else
   static locale_t c_locale = newlocale(LC_ALL_MASK, "C", (locale_t)0);
 #endif
 
-  errno = 0;
   char *str_end = NULL;
   const double val = strtod_l(s, &str_end, c_locale);
-  if (str_end != s && errno != ERANGE && isfinite(val)) {
-    errno = 0;
+  if (str_end != s && isfinite(val)) {
     *result = val;
     return true;
   } else {
